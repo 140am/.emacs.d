@@ -6,7 +6,7 @@ An ever-changing set of emacs settings.
 
 To get the configuration:
 
-    git clone --recursive git://github.com/140am/.emacs.d.git
+    git clone --recursive https://github.com/140am/.emacs.d.git
 
 ## Install emacs on macOS
 
