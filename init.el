@@ -7,7 +7,7 @@
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (custom-set-variables
- '(package-selected-packages (quote (go-mode exec-path-from-shell))))
+ '(package-selected-packages (quote (go-autocomplete go-mode exec-path-from-shell))))
 (custom-set-faces
  )
 
