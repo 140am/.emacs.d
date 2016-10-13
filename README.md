@@ -13,3 +13,10 @@ To get the configuration:
 I use [Cocoa Emacs](https://emacsformacosx.com/), installed like this:
 
     brew cask install emacs
+
+Install used packages:
+
+- exec-path-from-shell
+- auto-complete
+- go-mode
+- go-autocomplete
