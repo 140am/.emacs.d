@@ -1,4 +1,3 @@
-; register MELPA package directory
 ; load packages
 (package-initialize)
 
@@ -75,3 +74,6 @@
 ; improve reading of flow in code
 (show-paren-mode 1)
 
+; use functions instead of tags for elisp file lookups
+(define-key emacs-lisp-mode-map
+  (kbd "M-.") 'find-function-at-point)
