@@ -62,3 +62,7 @@
 
 (with-eval-after-load 'go-mode
   (require 'go-autocomplete))
+
+; ido-mode for better find file / switch buffer
+(ido-mode 1)
+
