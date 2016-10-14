@@ -72,3 +72,6 @@
 ; perm enable el documentation mode
 (eldoc-mode 1)
 
+; improve reading of flow in code
+(show-paren-mode 1)
+
