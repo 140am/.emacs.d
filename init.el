@@ -1,5 +1,10 @@
 ; register MELPA package directory
+; load packages
 (package-initialize)
+
+; ui minimalism
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ; set color theme
 (load-theme 'leuven t)
