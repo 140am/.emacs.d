@@ -1,0 +1,5 @@
+.emacs.desktop*
+*.dat
+ido.last
+auto-save-list/
+elpa/
