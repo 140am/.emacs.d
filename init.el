@@ -69,3 +69,6 @@
 ; confirm with "y" instead of "yes"
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+; perm enable el documentation mode
+(eldoc-mode 1)
+
