@@ -21,6 +21,9 @@
 ; save emac sessions
 (desktop-save-mode 1)
 
+; set PAGER env variable for pagination in shell
+(setenv "PAGER" "/bin/cat")
+
 ; use system $PATH
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
