@@ -66,3 +66,6 @@
 ; ido-mode for better find file / switch buffer
 (ido-mode 1)
 
+; confirm with "y" instead of "yes"
+(defalias 'yes-or-no-p 'y-or-n-p)
+
