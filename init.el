@@ -4,6 +4,9 @@
 ; set color theme
 (load-theme 'leuven t)
 
+; don't create ~ suffixed backup files on saves
+(setq make-backup-files nil)
+
 ; add MELPA to package manager
 (require 'package)
 (add-to-list 'package-archives
