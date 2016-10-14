@@ -1,10 +1,17 @@
 # My emacs settings
 
-An ever-changing set of emacs settings. Primary used for [Go](https://golang.org/) software development.
+> "Take it as a LISP machine, a working env, a framework to build upon my liking."
+
+
+## Features
+
+- [MELPA package manager](https://melpa.org/)
+- [go-mode](https://github.com/dominikh/go-mode.el) for the [Go](https://golang.org/) programming language
+- save the state of Emacs from one session to another
 
 ## Setup
 
-To get the configuration:
+To get the configuration, run in home directory:
 
     git clone --recursive https://github.com/140am/.emacs.d.git
 
@@ -14,14 +21,18 @@ I use [Cocoa Emacs](https://emacsformacosx.com/), installed like this:
 
     brew cask install emacs
 
-Install used packages with `M-x package-install`:
+## Install used Emacs packages
+
+Using `M-x package-install`:
 
 - exec-path-from-shell
 - auto-complete
 - go-mode
 - go-autocomplete
 
-Install used Go development dependencies:
+## Go development dependencies
+
+Install used tooling:
 
 ```
 go get -u golang.org/x/tools/cmd/...
@@ -36,12 +47,24 @@ Assumes the following env variables are set:
 - PATH=$PATH:$GOROOT/bin
 - PATH=$PATH:$GOPATH/bin
 
-## Keyboard Navigation 101
+## Customize
+
+To customize the configuration fork this repo and edit [init.el](init.el).
+
+
+## 101
+
+Gotchas I experienced while getting familar with Emacs:
+
+- any text you see in an Emac window is part of some buffer
+- the *frame* contains a *tool bar*, *window*, *modeline* and *minibuffer*
+
+### Keyboard Navigation
 
 - `C          ` : often used for basic units (character, line)
 - `M          ` : often used for language specific things (word, sentences, paragraph)
 
-### Help
+#### Help
 
 - `C-h t      ` tutorial
 - `C-h ?      ` usage of `C-h`
@@ -54,36 +77,38 @@ Assumes the following env variables are set:
 - `C-h v      ` describe a variable
 - `C-h a      ` command apropos. list commands (callable via M-x) by keyword
 
-### Control
+#### Control
 
 - `C-g        ` stop / abort command
 - `C-x        ` character extend (followed by one character)
 - `M-x        ` named command extend (followed by a long name)
 - `C-u        ` update count (repeat count, command flag). example: C-v / M-v
 
-### Files
+#### Files
 
 - `C-x C-f    ` finding a file
 - `C-x C-s    ` saving a file
 
-### Search
+#### Search
 
 - `C-s        ` search forward incremental
 - `C-r        ` search backward
+- `C-x C-x    ` go back to previous point
+- `C-M-%`     ` find and replace one by one
 
-### Buffers
+#### Buffers
 
 - `C-x C-b    ` list buffers
 - `C-x b      ` switch to a buffer
 - `C-x s      ` save open buffers (after confirmation)
 - `C-x k      ` kill current buffer
 
-### View
+#### View
 
 - `C-v` / `M-v` view next / previous screen
 - `C-l        ` clean screen + center around current line
 
-### Windows
+#### Windows
 
 - `C-x 0      ` close current window
 - `C-x 1      ` close all but current window
@@ -92,29 +117,27 @@ Assumes the following env variables are set:
 - `C-x o      ` other window switch
 - `C-M-v      ` scroll alternate window
 
-### Undo / Redo
+#### Undo / Redo
 
 - `C-\        ` undo text changes
 
-### Macros
+#### Macros
 
 - `C-x (      ` start recording
 - `C-x )      ` end record
 - `C-x e` / `e` execute macro / repeat execute
 
-### Navigation
+#### Navigation
 
 - `M<         ` beginning of file / text
 - `M>         ` end of file / text
 
-### Text
-
-#### by character
+##### by character
 
 - `C-b / M    ` backward
 - `C-f / M    ` forward
 
-#### by line / sentence
+##### by line / sentence
 
 - `C-p / M    ` previous line
 - `C-a / M    ` beginning line / sentence
@@ -140,6 +163,25 @@ Assumes the following env variables are set:
 - `C-y        ` yank / paste text
 - `M-y        ` yank updates with previous kills
 
-### Go-Mode
+#### Mode - Go Language
 
 - `M-.        ` follow definition
+
+
+### Extended Commands `M-x`
+
+- `shell      ` opens terminal
+- `occur      ` given a regex, create buffer of matches
+
+
+### Resources
+
+Links I found helpful learning Emacs:
+
+- [How to learn Emacs](http://david.rothlis.net/emacs/tutorial.html)
+- [How to learn Emacs: A visual tutorial](http://sachachua.com/begin-emacs)
+
+#### Go Programming Language
+
+- [Writing Go in Emacs](https://dominik.honnef.co/posts/2013/03/emacs-go-1/)
+- [Configure Emacs as a Go Editor From Scratch](http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/)
