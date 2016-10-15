@@ -77,3 +77,7 @@
 ; use functions instead of tags for elisp file lookups
 (define-key emacs-lisp-mode-map
   (kbd "M-.") 'find-function-at-point)
+
+; add golint
+(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
+(require 'golint)

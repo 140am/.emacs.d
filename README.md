@@ -6,8 +6,11 @@
 ## Features
 
 - [MELPA package manager](https://melpa.org/)
-- [go-mode](https://github.com/dominikh/go-mode.el) for the [Go](https://golang.org/) programming language
+- [go-mode](https://github.com/dominikh/go-mode.el) for the [Go](https://golang.org/) 1.6+ programming language
+  - go fmt on save
+  - [go lint](https://github.com/golang/lint) via `M-x golint`
 - save the state of Emacs from one session to another
+- auto complete, improved file & buffer navigation & more colors!
 
 ## Setup
 
@@ -37,7 +40,8 @@ Install used tooling:
 ```
 go get -u golang.org/x/tools/cmd/...
 go get -u github.com/nsf/gocode
-go get github.com/rogpeppe/godef
+go get -u github.com/rogpeppe/godef
+go get -u github.com/golang/lint/golint
 ```
 
 Assumes the following env variables are set:
@@ -61,8 +65,12 @@ Gotchas I experienced while getting familar with Emacs:
 
 ### Keyboard Navigation
 
-- `C          ` : often used for basic units (character, line)
-- `M          ` : often used for language specific things (word, sentences, paragraph)
+Key abbreviations:
+
+- `M          ` Alt (used to be called Meta)
+- `C          ` Control
+- `S          ` Shift
+- `C-x t      ` means holding both Control and x, release both, and press f
 
 #### Help
 
@@ -172,6 +180,7 @@ Gotchas I experienced while getting familar with Emacs:
 
 - `shell      ` opens terminal
 - `occur      ` given a regex, create buffer of matches
+- `golint     ` run golint on the current file
 
 
 ### Resources
