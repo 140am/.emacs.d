@@ -18,7 +18,7 @@
 
 ; used packages
 (custom-set-variables
- '(package-selected-packages (quote (go-autocomplete go-mode exec-path-from-shell))))
+ '(package-selected-packages (quote (exec-path-from-shell go-autocomplete go-mode))))
 (custom-set-faces
  )
 
@@ -39,6 +39,14 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 (when window-system (set-exec-path-from-shell-PATH))
 
+; use system $GOPATH
+(defun set-gopath-from-shell-GOPATH ()
+  (let ((path-from-shell (replace-regexp-in-string
+                          "[ \t\n]*$"
+                          ""
+                          (shell-command-to-string "$SHELL --login -i -c 'echo $GOPATH'"))))
+    (setenv "GOPATH" path-from-shell)))
+(when window-system (set-gopath-from-shell-GOPATH))
 
 ; go-mode settings
 (defun my-go-mode-hook ()
