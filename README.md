@@ -185,14 +185,14 @@ Key abbreviations:
 - `golint     ` run golint on the current file
 
 
-### Resources
+## Resources
 
 Links I found helpful learning Emacs:
 
 - [How to learn Emacs](http://david.rothlis.net/emacs/tutorial.html)
 - [How to learn Emacs: A visual tutorial](http://sachachua.com/begin-emacs)
 
-#### Go Programming Language
+### Go Programming Language
 
-- [Writing Go in Emacs](https://dominik.honnef.co/posts/2013/03/emacs-go-1/)
+- [Writing Go in Emacs](https://dominik.honnef.co/posts/2013/03/emacs-go-1/) & [part 2](https://dominik.honnef.co/posts/2013/08/emacs-go-2/)
 - [Configure Emacs as a Go Editor From Scratch](http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/)
