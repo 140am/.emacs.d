@@ -5,10 +5,11 @@
 
 ## Features
 
-- [MELPA package manager](https://melpa.org/)
 - [go-mode](https://github.com/dominikh/go-mode.el) for the [Go](https://golang.org/) 1.6+ programming language
   - go fmt on save
-  - [go lint](https://github.com/golang/lint) via `M-x golint`
+  - [go lint](https://github.com/golang/lint) a document with `M-x golint`
+  - [godef](https://github.com/rogpeppe/godef) jump to a definition with `M-.`
+- [MELPA package manager](https://melpa.org/)
 - save the state of Emacs from one session to another
 - auto complete, improved file & buffer navigation & more colors!
 
@@ -91,6 +92,7 @@ Key abbreviations:
 - `C-x        ` character extend (followed by one character)
 - `M-x        ` named command extend (followed by a long name)
 - `C-u        ` update count (repeat count, command flag). example: C-v / M-v
+- `M-:        ` evaluate an expression
 
 #### Files
 
