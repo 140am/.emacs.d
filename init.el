@@ -1,6 +1,3 @@
-; load packages
-(package-initialize)
-
 ; ui minimalism
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -15,6 +12,42 @@
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+; load packages and init them
+(package-initialize)
+
+; list of packages to install
+(setq package-list '(use-package))
+
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+; install additional packages with `use-package`
+(use-package exec-path-from-shell
+  :ensure t)
+
+(use-package auto-complete
+  :ensure t)
+
+(use-package go-mode
+  :ensure t)
+
+(use-package go-autocomplete
+  :ensure t)
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 ; used packages
 (custom-set-variables

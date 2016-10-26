@@ -15,24 +15,17 @@
 
 ## Setup
 
-To get the configuration, run in home directory:
+To get this Emacs configuration, run in home directory:
 
     git clone --recursive https://github.com/140am/.emacs.d.git
 
-## Install emacs on macOS
+Done - start Emacs.
 
-I use [Cocoa Emacs](https://emacsformacosx.com/), installed like this:
+## Install Emacs on macOS
+
+I use [Cocoa Emacs](https://emacsformacosx.com/), installed using [brew.sh](http://brew.sh/) like this:
 
     brew cask install emacs
-
-## Install used Emacs packages
-
-Using `M-x package-install`:
-
-- exec-path-from-shell
-- auto-complete
-- go-mode
-- go-autocomplete
 
 ## Go development dependencies
 
@@ -47,9 +40,7 @@ go get -u github.com/golang/lint/golint
 
 Assumes the following env variables are set:
 
-- GOROOT
 - GOPATH
-- PATH=$PATH:$GOROOT/bin
 - PATH=$PATH:$GOPATH/bin
 
 ## Customize
