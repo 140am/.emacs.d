@@ -9,6 +9,7 @@
   - go fmt on save
   - [go lint](https://github.com/golang/lint) a document with `M-x golint`
   - [godef](https://github.com/rogpeppe/godef) jump to a definition with `M-.`
+  - [go eldoc](https://github.com/syohex/emacs-go-eldoc) support to show type and argument information
 - [MELPA package manager](https://melpa.org/)
 - save the state of Emacs from one session to another
 - auto complete, improved file & buffer navigation & more colors!
@@ -132,6 +133,7 @@ Key abbreviations:
 
 - `M<         ` beginning of file / text
 - `M>         ` end of file / text
+- `M-g g      ` goto line
 
 ##### by character
 

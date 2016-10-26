@@ -38,6 +38,9 @@
 (use-package go-mode
   :ensure t)
 
+(use-package go-eldoc
+  :ensure t)
+
 (use-package go-autocomplete
   :ensure t)
 
@@ -90,6 +93,9 @@
   ; Godef jump key binding                                                      
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'my-go-mode-hook)
+
+; init go-eldoc
+(add-hook 'go-mode-hook 'go-eldoc-setup)
 
 ; auto-complete
 (require 'auto-complete-config)
