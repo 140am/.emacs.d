@@ -128,3 +128,9 @@
 ; add golint
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint)
+
+; org-mode
+(require 'org)
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cl" 'org-store-link)
+(setq org-log-done t)
