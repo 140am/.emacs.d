@@ -52,6 +52,37 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+(use-package web-mode
+  :ensure t
+  :mode (("\\.html?\\'" . web-mode)
+	 ("\\.jsx\\'" . web-mode)
+	 ; ruby on rails templates
+	 ("\\.html\\.erb\\'" . web-mode)
+	 ; mustache templates
+	 ("\\.mustache\\'" . web-mode)
+	 ; jinja templates
+	 ("\\.jinja\\'" . web-mode)
+	 ; asp.net
+	 ("\\.as[cp]x\\'" . web-mode)
+	 ("\\.[agj]sp\\'" . web-mode)
+	 ; php / drupal templates
+	 ("\\.tpl\\.php\\'" . web-mode))
+  :config (progn
+	    (add-hook 'web-mode-hook
+		      (lambda ()
+			; Auto-pairing			
+			(setq web-mode-enable-auto-pairing t)
+			; CSS colorization
+			(setq web-mode-enable-css-colorization t)
+			; HTML element offset indentation
+			(setq web-mode-markup-indent-offset 2)
+			; CSS offset indentation
+			(setq web-mode-css-indent-offset 2)
+			; script/code offset indentation			
+			(setq web-mode-code-indent-offset 2)
+			(setq web-mode-style-padding 2)
+			(setq web-mode-script-padding 2)))))
+
 ; used packages
 (custom-set-variables
  '(package-selected-packages (quote (exec-path-from-shell go-autocomplete go-mode))))
