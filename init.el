@@ -83,6 +83,9 @@
 			(setq web-mode-style-padding 2)
 			(setq web-mode-script-padding 2)))))
 
+(use-package protobuf-mode
+  :ensure t)
+
 ; used packages
 (custom-set-variables
  '(package-selected-packages (quote (exec-path-from-shell go-autocomplete go-mode))))
