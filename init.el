@@ -9,8 +9,6 @@
     (setq ns-auto-hide-menu-bar t)
 ))
 
-; set color theme
-(load-theme 'leuven t)
 
 ; highlight current line
 (global-hl-line-mode 1)
@@ -94,6 +92,14 @@
 			(setq web-mode-script-padding 2)))))
 
 (use-package protobuf-mode
+  :ensure t)
+
+; set color theme
+(use-package ample-theme
+  :init (progn (load-theme 'ample t t)
+	       (load-theme 'ample-flat t t)
+	       (load-theme 'ample-light t t)
+	       (enable-theme 'ample))
   :ensure t)
 
 ; used packages

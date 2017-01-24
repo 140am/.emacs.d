@@ -13,7 +13,7 @@ Daily used with focus on [Go](https://golang.org/) & Web software development, M
   - [go eldoc](https://github.com/syohex/emacs-go-eldoc) support to show type and argument information
 - [web-mode](http://web-mode.org/) for editing web templates, JS/X, embed CSS/JS in HTML etc
 - save the state of Emacs from one session to another
-- auto complete, improved file & buffer navigation & more colors!
+- auto complete, improved file & buffer navigation & [more colors](https://github.com/jordonbiondo/ample-theme#all-three-themes)!
 
 ## How does it look?
 
