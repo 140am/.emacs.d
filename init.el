@@ -95,7 +95,9 @@
 
 ; used packages
 (custom-set-variables
- '(package-selected-packages (quote (exec-path-from-shell go-autocomplete go-mode))))
+ '(package-selected-packages
+   (quote
+    (protobuf-mode exec-path-from-shell go-autocomplete go-mode))))
 (custom-set-faces
  )
 
