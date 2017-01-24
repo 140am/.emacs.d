@@ -12,6 +12,9 @@
 ; set color theme
 (load-theme 'leuven t)
 
+; highlight current line
+(global-hl-line-mode 1)
+
 ; don't create ~ suffixed backup files on saves
 (setq make-backup-files nil)
 
