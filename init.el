@@ -91,6 +91,9 @@
 			(setq web-mode-style-padding 2)
 			(setq web-mode-script-padding 2)))))
 
+(use-package php-mode
+  :ensure t)
+
 (use-package protobuf-mode
   :ensure t)
 
@@ -106,12 +109,17 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (protobuf-mode exec-path-from-shell go-autocomplete go-mode))))
+    (php-mode protobuf-mode exec-path-from-shell go-autocomplete go-mode))))
 (custom-set-faces
  )
 
 ; save emac sessions
 (desktop-save-mode 1)
+
+; enable PHP mode based on extension
+(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
 
 ; set PAGER env variable for pagination in shell
 (setenv "PAGER" "/bin/cat")
