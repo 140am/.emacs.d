@@ -204,5 +204,15 @@
 (setq org-agenda-include-all-todo t)
 ;; prompt for notes after tagging task as DONE
 (setq org-log-done t)
+
+;; caputre tasks and journal entries in files
+(setq org-default-notes-file "~/Documents/gtd.org")
+(setq org-capture-templates
+  '(("t" "Todo" entry (file+headline "~/Documents/gtd.org" "Tasks")
+     "* TODO %?\n  %i\n  %a")
+    ("j" "Journal" entry (file+datetree "~/Documents/journal.org")
+     "* %?\nEntered on %U\n  %i\n  %a")))
+(define-key global-map "\C-cc" 'org-capture)
+
 ;; magit keybinding
 (global-set-key (kbd "C-x g") 'magit-status)
