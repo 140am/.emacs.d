@@ -1,4 +1,4 @@
-; ui minimalism
+;; ui minimalism
 (menu-bar-mode -1)
 
 (if (display-graphic-p)
@@ -10,33 +10,33 @@
 ))
 
 
-; highlight current line
+;; highlight current line
 (global-hl-line-mode 1)
 
-; don't create ~ suffixed backup files on saves
+;; don't create ~ suffixed backup files on saves
 (setq make-backup-files nil)
 
-; add MELPA to package manager
+;; add MELPA to package manager
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-; load packages and init them
+;; load packages and init them
 (package-initialize)
 
-; list of packages to install
+;; list of packages to install
 (setq package-list '(use-package))
 
 ; fetch the list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
+;; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
 
-; install additional packages with `use-package`
+;; install additional packages with `use-package`
 (use-package exec-path-from-shell
   :ensure t)
 
@@ -97,7 +97,7 @@
 (use-package protobuf-mode
   :ensure t)
 
-; set color theme
+;; set color theme
 (use-package ample-theme
   :init (progn (load-theme 'ample t t)
 	       (load-theme 'ample-flat t t)
@@ -105,7 +105,7 @@
 	       (enable-theme 'ample))
   :ensure t)
 
-; used packages
+;; used packages
 (custom-set-variables
  '(package-selected-packages
    (quote
@@ -113,18 +113,18 @@
 (custom-set-faces
  )
 
-; save emac sessions
+;; save emac sessions
 (desktop-save-mode 1)
 
-; enable PHP mode based on extension
+;; enable PHP mode based on extension
 (autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
 
-; set PAGER env variable for pagination in shell
+;; set PAGER env variable for pagination in shell
 (setenv "PAGER" "/bin/cat")
 
-; use system $PATH
+;; use system $PATH
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
                           "[ \t\n]*$"
@@ -135,7 +135,7 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 (when window-system (set-exec-path-from-shell-PATH))
 
-; use system $GOPATH
+;; use system $GOPATH
 (defun set-gopath-from-shell-GOPATH ()
   (let ((path-from-shell (replace-regexp-in-string
                           "[ \t\n]*$"
@@ -144,24 +144,24 @@
     (setenv "GOPATH" path-from-shell)))
 (when window-system (set-gopath-from-shell-GOPATH))
 
-; go-mode settings
+;; go-mode settings
 (defun my-go-mode-hook ()
-  ; Use goimports instead of go-fmt
+  ;; Use goimports instead of go-fmt
   (setq gofmt-command "goimports")
-  ; Call Gofmt before saving                                                    
+  ;; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
-  ; Godef jump key binding                                                      
+  ;; Godef jump key binding
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
-; init go-eldoc
+;; init go-eldoc
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
-; auto-complete
+;; auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
 
-; go-autocomplete
+;; go-autocomplete
 (defun auto-complete-for-go ()
   (auto-complete-mode 1))
 (add-hook 'go-mode-hook 'auto-complete-for-go)
@@ -169,27 +169,27 @@
 (with-eval-after-load 'go-mode
   (require 'go-autocomplete))
 
-; ido-mode for better find file / switch buffer
+;; ido-mode for better find file / switch buffer
 (ido-mode 1)
 
-; confirm with "y" instead of "yes"
+;; confirm with "y" instead of "yes"
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-; perm enable el documentation mode
+;; perm enable el documentation mode
 (eldoc-mode 1)
 
-; improve reading of flow in code
+;; improve reading of flow in code
 (show-paren-mode 1)
 
-; use functions instead of tags for elisp file lookups
+;; use functions instead of tags for elisp file lookups
 (define-key emacs-lisp-mode-map
   (kbd "M-.") 'find-function-at-point)
 
-; add golint
+;; add golint
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint)
 
-; org-mode
+;; org-mode
 (require 'org)
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cl" 'org-store-link)
