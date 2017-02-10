@@ -52,6 +52,9 @@
 (use-package go-autocomplete
   :ensure t)
 
+(use-package magit
+  :ensure t)
+
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -194,3 +197,5 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cl" 'org-store-link)
 (setq org-log-done t)
+;; magit keybinding
+(global-set-key (kbd "C-x g") 'magit-status)
