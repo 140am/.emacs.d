@@ -196,6 +196,13 @@
 (require 'org)
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cl" 'org-store-link)
+(setq org-todo-keywords '("TODO" "STARTED" "WAITING" "DONE")) 
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+;; make it easy to pull in holidays and other events
+(setq org-agenda-include-diary t)
+;; include all unfinished todos in Org daily and weekly views
+(setq org-agenda-include-all-todo t)
+;; prompt for notes after tagging task as DONE
 (setq org-log-done t)
 ;; magit keybinding
 (global-set-key (kbd "C-x g") 'magit-status)
