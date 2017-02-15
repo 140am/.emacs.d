@@ -109,12 +109,8 @@
   :ensure t)
 
 ;; used packages
-(custom-set-variables
- '(package-selected-packages
-   (quote
-    (php-mode protobuf-mode exec-path-from-shell go-autocomplete go-mode))))
-(custom-set-faces
- )
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
 
 ;; save emac sessions
 (desktop-save-mode 1)
