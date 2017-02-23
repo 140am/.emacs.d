@@ -198,12 +198,21 @@
 (setq org-todo-keywords '("TODO" "STARTED" "WAITING" "VERIFY" "|" "DONE" "CANCELLED"))
 ;; effort estimate presets
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-;; make it easy to pull in holidays and other events
+;; pull holidays and other events into agenda
 (setq org-agenda-include-diary t)
 ;; include all unfinished todos in Org daily and weekly views
 (setq org-agenda-include-all-todo t)
 ;; prompt for notes after tagging task as DONE
 (setq org-log-done t)
+
+;; Set to the location of your Org files on your local system
+(setq org-directory "~/Documents")
+;; Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/Documents/gtd.org")
+;; set org-mobile staging area via dropbox
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+;; files to sync
+(setq org-mobile-files '("~/Documents/gtd.org"))
 
 ;; caputre tasks and journal entries in files
 (setq org-default-notes-file "~/Documents/gtd.org")
