@@ -197,6 +197,8 @@
 ;; global transition states
 (setq org-todo-keywords '("TODO" "STARTED" "WAITING" "VERIFY" "|" "DONE" "CANCELLED"))
 ;; effort estimate presets
+'(org-refile-targets (quote (("gtd.org" :level . 2))))
+
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; pull holidays and other events into agenda
 (setq org-agenda-include-diary t)
