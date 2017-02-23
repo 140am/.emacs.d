@@ -190,9 +190,13 @@
 
 ;; org-mode
 (require 'org)
+;; agenda view
 (define-key global-map "\C-ca" 'org-agenda)
+;; store link to document
 (define-key global-map "\C-cl" 'org-store-link)
-(setq org-todo-keywords '("TODO" "STARTED" "WAITING" "DONE")) 
+;; global transition states
+(setq org-todo-keywords '("TODO" "STARTED" "WAITING" "VERIFY" "|" "DONE" "CANCELLED"))
+;; effort estimate presets
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; make it easy to pull in holidays and other events
 (setq org-agenda-include-diary t)
