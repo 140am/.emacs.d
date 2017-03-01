@@ -168,6 +168,12 @@
 (with-eval-after-load 'go-mode
   (require 'go-autocomplete))
 
+;; load go-guru
+(add-to-list 'load-path "~/.emacs.d/vendor/go-mode.el")
+(require 'go-guru)
+;; enable identifier highlighting
+(add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
+
 ;; ido-mode for better find file / switch buffer
 (ido-mode 1)
 
