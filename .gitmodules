@@ -1,0 +1,3 @@
+[submodule "vendor/go-mode.el"]
+	path = vendor/go-mode.el
+	url = https://github.com/dominikh/go-mode.el
