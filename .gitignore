@@ -1,7 +1,8 @@
-.emacs.desktop*
-*.dat
-ido.last
 auto-save-list/
 elpa/
 custom.el
-bookmarks
+ido.last
+projectile-bookmarks.eld
+ac-comphist.dat
+.recentf
+.smex-items
