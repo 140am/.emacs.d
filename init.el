@@ -1,59 +1,80 @@
-;; ui minimalism
-(menu-bar-mode -1)
+;; The init.el is responsible for installing all used packages.
+;; Customizations are defined within the settings/ directory.
 
-(if (display-graphic-p)
-  (progn
-    (tool-bar-mode -1)
-    (scroll-bar-mode -1)
-    (menu-bar-mode 1)
-    (setq ns-auto-hide-menu-bar t)
-))
+;; Save emac sessions.
+(desktop-save-mode 1)
 
+;; Save session customizations to file.
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
 
-;; highlight current line
-(global-hl-line-mode 1)
+;; set PAGER env variable for pagination in shell
+(setenv "PAGER" "/bin/cat")
 
 ;; don't create ~ suffixed backup files on saves
 (setq make-backup-files nil)
 
-;; add MELPA to package manager
+;; package.el package manager
 (require 'package)
+;; package repositories to use
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ;; load packages and init them
 (package-initialize)
 
-;; list of packages to install
-(setq package-list '(use-package))
-
-; fetch the list of packages available 
+;; fetch list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; install the missing packages
+;; list of packages to install
+(setq package-list '(use-package))
+
+;; install any not already installed package
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
 
-;; install additional packages with `use-package`
-(use-package exec-path-from-shell
-  :ensure t)
-
-(use-package auto-complete
-  :ensure t)
-
-(use-package go-mode
-  :ensure t)
-
-(use-package go-eldoc
-  :ensure t)
-
-(use-package go-autocomplete
-  :ensure t)
-
-(use-package magit
-  :ensure t)
+;; use system PATH and GOPATH
+;; configured in settings/shell-integration.el
+(use-package exec-path-from-shell :ensure t)
+;; enable auto-completion extension
+;; https://github.com/auto-complete/auto-complete
+(use-package auto-complete :ensure t)
+;; go-mode
+(use-package go-mode :ensure t)
+(use-package go-eldoc :ensure t)
+(use-package go-autocomplete :ensure t)
+(use-package tagedit :ensure t)
+;; colorful parenthesis matching
+(use-package rainbow-delimiters :ensure t)
+;; git interface
+(use-package magit :ensure t)
+;; Enhances M-x to allow easier execution of commands. Provides
+;; a filterable list of possible commands in the minibuffer
+;; http://www.emacswiki.org/emacs/Smex
+(use-package smex :ensure t)
+(use-package php-mode :ensure t)
+(use-package protobuf-mode :ensure t)
+;; makes handling lisp expressions much, much easier
+;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+(use-package paredit :ensure t)
+;; key bindings and code colorization for Clojure
+;; https://github.com/clojure-emacs/clojure-mode
+(use-package clojure-mode :ensure t)
+;; extra syntax highlighting for clojure
+(use-package clojure-mode-extra-font-locking :ensure t)
+;; integration with a Clojure REPL
+;; https://github.com/clojure-emacs/cider
+(use-package cider :ensure t)
+;; allow ido usage in as many contexts as possible
+(use-package ido-completing-read+ :ensure t)
+;; project navigation
+(use-package projectile :ensure t)
 
 (use-package markdown-mode
   :ensure t
@@ -94,143 +115,28 @@
 			(setq web-mode-style-padding 2)
 			(setq web-mode-script-padding 2)))))
 
-(use-package php-mode
-  :ensure t)
+;; Colore theme to use;
+(use-package ample-theme :ensure t)
 
-(use-package protobuf-mode
-  :ensure t)
+;; Directory containing organized customizations.
+(add-to-list 'load-path "~/.emacs.d/settings")
 
-;; set color theme
-(use-package ample-theme
-  :init (progn (load-theme 'ample t t)
-	       (load-theme 'ample-flat t t)
-	       (load-theme 'ample-light t t)
-	       (enable-theme 'ample))
-  :ensure t)
-
-;; used packages
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
-
-;; save emac sessions
-(desktop-save-mode 1)
-
-;; enable PHP mode based on extension
-(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
-
-;; set PAGER env variable for pagination in shell
-(setenv "PAGER" "/bin/cat")
-
-;; use system $PATH
-(defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$"
-                          ""
-                          (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq eshell-path-env path-from-shell) ; for eshell users
-    (setq exec-path (split-string path-from-shell path-separator))))
-(when window-system (set-exec-path-from-shell-PATH))
-
-;; use system $GOPATH
-(defun set-gopath-from-shell-GOPATH ()
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$"
-                          ""
-                          (shell-command-to-string "$SHELL --login -i -c 'echo $GOPATH'"))))
-    (setenv "GOPATH" path-from-shell)))
-(when window-system (set-gopath-from-shell-GOPATH))
-
-;; go-mode settings
-(defun my-go-mode-hook ()
-  ;; Use goimports instead of go-fmt
-  (setq gofmt-command "goimports")
-  ;; Call Gofmt before saving
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  ;; Godef jump key binding
-  (local-set-key (kbd "M-.") 'godef-jump))
-(add-hook 'go-mode-hook 'my-go-mode-hook)
-
-;; init go-eldoc
-(add-hook 'go-mode-hook 'go-eldoc-setup)
-
-;; auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-
-;; go-autocomplete
-(defun auto-complete-for-go ()
-  (auto-complete-mode 1))
-(add-hook 'go-mode-hook 'auto-complete-for-go)
-
-(with-eval-after-load 'go-mode
-  (require 'go-autocomplete))
-
-;; load go-guru
-(add-to-list 'load-path "~/.emacs.d/vendor/go-mode.el")
-(require 'go-guru)
-;; enable identifier highlighting
-(add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
-
-;; ido-mode for better find file / switch buffer
-(ido-mode 1)
-
-;; confirm with "y" instead of "yes"
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-;; perm enable el documentation mode
-(eldoc-mode 1)
-
-;; improve reading of flow in code
-(show-paren-mode 1)
-
-;; use functions instead of tags for elisp file lookups
-(define-key emacs-lisp-mode-map
-  (kbd "M-.") 'find-function-at-point)
-
-;; add golint
-(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
-(require 'golint)
-
-;; org-mode
-(require 'org)
-;; agenda view
-(define-key global-map "\C-ca" 'org-agenda)
-;; store link to document
-(define-key global-map "\C-cl" 'org-store-link)
-;; global transition states
-(setq org-todo-keywords '("TODO" "STARTED" "WAITING" "VERIFY" "|" "DONE" "CANCELLED"))
-;; effort estimate presets
-'(org-refile-targets (quote (("gtd.org" :level . 2))))
-
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-;; pull holidays and other events into agenda
-(setq org-agenda-include-diary t)
-;; include all unfinished todos in Org daily and weekly views
-(setq org-agenda-include-all-todo t)
-;; prompt for notes after tagging task as DONE
-(setq org-log-done t)
-
-;; Set to the location of your Org files on your local system
-(setq org-directory "~/Documents")
-;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/Documents/gtd.org")
-;; set org-mobile staging area via dropbox
-(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-;; files to sync
-(setq org-mobile-files '("~/Documents/gtd.org"))
-
-;; caputre tasks and journal entries in files
-(setq org-default-notes-file "~/Documents/gtd.org")
-(setq org-capture-templates
-  '(("t" "Todo" entry (file+headline "~/Documents/gtd.org" "Tasks")
-     "* TODO %?\n  %i\n  %a")
-    ("j" "Journal" entry (file+datetree "~/Documents/journal.org")
-     "* %?\nEntered on %U\n  %i\n  %a")))
-(define-key global-map "\C-cc" 'org-capture)
-
-;; magit keybinding
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+;; Use system environment variables.
+(load "shell-integration.el")
+;; These customizations make it easier for you to navigate files,
+;; switch buffers, and choose options from the minibuffer.
+(load "navigation.el")
+;; These customizations change the way emacs looks and disable/enable
+;; some user interface elements
+(load "ui.el")
+;; These customizations make editing a bit nicer.
+(load "editing.el")
+;; Language specific editing customizations.
+(load "editing-elisp.el")
+(load "editing-go.el")
+(load "editing-org.el")
+(load "editing-js.el")
+(load "editing-php.el")
+(load "editing-clojure.el")
+;; Hard-to-categorize customizations.
+(load "misc.el")
